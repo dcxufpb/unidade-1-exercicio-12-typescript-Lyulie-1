@@ -54,6 +54,16 @@ CPF: 111.111.111-11
 `
 )
 
+const TEXTO_ESPERADO_EXERCICIO_CUSTOMIZADO = (
+`Departamento de artes russas, DRA
+Coordenadas: 59.9144855, 30.3341104
+
+Coordenação:
+Dima
+CPF: 18.888-000
+`
+)
+
 let NOME_DEPARTAMENTO : string = "Departamento 1"
 let SIGLA : string = "Sigla 1"
 let LOCALIZACAO : string = "11.1111111, 11.1111111"
@@ -210,14 +220,43 @@ test('Localização vazia', () => {
         cpf : CPF
     }
 
-    let nomeDepartamentoVazio : Departamento = {
+    let localizacaoVazia : Departamento = {
         nome : NOME_DEPARTAMENTO,
         sigla : SIGLA,
         localizacao : "",
         coordenador
     }
 
-    verificaCampoObrigatorio(`A localização do departamento é obrigatória.`, nomeDepartamentoVazio);
+    verificaCampoObrigatorio(`A localização do departamento é obrigatória.`, localizacaoVazia);
+})
+
+test('Exercício customizado', () => {
+
+    // Defina seus próprios valores para as variáveis a seguir
+    let nome_departamento = "Departamento de artes russas";
+    let sigla = "DRA";
+    let localizacao = "59.9144855, 30.3341104";
+    let nome_coordenador = "Dima";
+    let idade = 0;
+    let cpf = "18.888-000";
+  
+    let coordenador : Coordenador = {
+        nome : nome_coordenador,
+        idade,
+        cpf
+    }
+
+    let customDepartamento : Departamento = {
+        nome : nome_departamento,
+        sigla,
+        localizacao,
+        coordenador
+    }
+    
+    //E atualize o texto esperado abaixo
+    expect(dados_departamento(customDepartamento)).toBe(
+        TEXTO_ESPERADO_EXERCICIO_CUSTOMIZADO
+    )
 })
 
 
